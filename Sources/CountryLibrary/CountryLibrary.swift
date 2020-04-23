@@ -1,0 +1,55 @@
+import Foundation
+
+struct CountryLibrary {
+    var text = "Hello, World!"
+}
+
+let countries: [Country] = NSLocale.isoCountryCodes.map { (code: String) -> Country in
+    return Country(code: code)
+}.sorted(by: {$0.name < $1.name})
+
+struct Country: Hashable {
+    
+    var code: String
+
+    var name: String {
+        let idCode = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+        return NSLocale(localeIdentifier: Locale.current.languageCode ?? "en_US").displayName(forKey: NSLocale.Key.identifier, value: idCode) ?? ""
+    }
+
+    var flag: String {
+        return code
+            .unicodeScalars
+            .map({ 127397 + $0.value })
+            .compactMap(UnicodeScalar.init)
+            .map(String.init)
+            .joined()
+    }
+
+    var flagAndName: String {
+        return self.flag + " " + self.name
+    }
+    
+}
+
+enum CountryIdentifier {
+    case code
+    case name
+}
+
+extension String {
+    func country(by cIdentifier: CountryIdentifier) -> Country? {
+            return countries.first(where: {
+                cIdentifier == .code
+                ? $0.code.range(of: "\(self)", options: .caseInsensitive) != nil
+                : $0.name.range(of: "\(self)", options: .caseInsensitive) != nil
+            })
+    }
+}
+
+extension Array where Element == String {
+    func countries(by cIdentifier: CountryIdentifier) -> [Country] {
+        return self.map({$0.country(by: cIdentifier)}).filter({$0 != nil}).map({$0!})
+    }
+}
+
