@@ -9,9 +9,9 @@ final class CountryLibraryTests: XCTestCase {
         assert(france.name == "France")
         assert(france.flag == "🇫🇷")
         
-        assert(countries.count > 250)
-        assert(countries[0].name < countries[1].name)
-        assert(countries[125].name < countries[126].name)
+        assert(CountryLibrary.countries.count > 250)
+        assert(CountryLibrary.countries[0].name < CountryLibrary.countries[1].name)
+        assert(CountryLibrary.countries[125].name < CountryLibrary.countries[126].name)
     }
     
     func testCountryExtensionStringByCode() {

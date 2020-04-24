@@ -1,12 +1,12 @@
 import Foundation
 
 struct CountryLibrary {
-    var text = "Hello, World!"
+    static public let countries: [Country] = NSLocale.isoCountryCodes.map { (code: String) -> Country in
+        return Country(code: code)
+    }.sorted(by: {$0.name < $1.name})
 }
 
-let countries: [Country] = NSLocale.isoCountryCodes.map { (code: String) -> Country in
-    return Country(code: code)
-}.sorted(by: {$0.name < $1.name})
+
 
 struct Country: Hashable {
     
@@ -39,7 +39,7 @@ enum CountryIdentifier {
 
 extension String {
     func country(by cIdentifier: CountryIdentifier) -> Country? {
-            return countries.first(where: {
+        return CountryLibrary.countries.first(where: {
                 cIdentifier == .code
                 ? $0.code.range(of: "\(self)", options: .caseInsensitive) != nil
                 : $0.name.range(of: "\(self)", options: .caseInsensitive) != nil
