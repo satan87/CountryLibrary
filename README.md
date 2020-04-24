@@ -24,9 +24,9 @@ CountryLibrary.countries
 
 By Country Code
 ```
-"FR".countries(by: .code)
+"FR".country(by: .code)
 ```
 By Country Name
 ```
-"Canada".countries(by: .name)
+"Canada".country(by: .name)
 ```
