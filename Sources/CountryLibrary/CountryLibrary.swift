@@ -6,8 +6,6 @@ struct CountryLibrary {
     }.sorted(by: {$0.name < $1.name})
 }
 
-
-
 struct Country: Hashable {
     
     var code: String
@@ -32,6 +30,12 @@ struct Country: Hashable {
     
 }
 
+extension Country: Identifiable {
+    var id: String {
+        return self.code
+    }
+}
+
 enum CountryIdentifier {
     case code
     case name
@@ -52,4 +56,3 @@ extension Array where Element == String {
         return self.map({$0.country(by: cIdentifier)}).filter({$0 != nil}).map({$0!})
     }
 }
-
