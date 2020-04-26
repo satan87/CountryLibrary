@@ -30,3 +30,4 @@ By Country Name
 ```
 "Canada".country(by: .name)
 ```
+
