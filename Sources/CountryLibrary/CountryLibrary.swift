@@ -1,12 +1,12 @@
 import Foundation
 
-enum CountryLibrary {
+public enum CountryLibrary {
     public static let countries: [Country] = NSLocale.isoCountryCodes.map { (code: String) -> Country in
         return Country(code: code)
     }.sorted(by: {$0.name < $1.name})
 }
 
-struct Country: Hashable {
+public struct Country: Hashable {
     
     var code: String
 
@@ -31,12 +31,12 @@ struct Country: Hashable {
 }
 
 extension Country: Identifiable {
-    var id: String {
+    public var id: String {
         return self.code
     }
 }
 
-enum CountryIdentifier {
+public enum CountryIdentifier {
     case code
     case name
 }
