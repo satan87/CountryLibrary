@@ -1,7 +1,7 @@
 import Foundation
 
-struct CountryLibrary {
-    static public let countries: [Country] = NSLocale.isoCountryCodes.map { (code: String) -> Country in
+enum CountryLibrary {
+    public static let countries: [Country] = NSLocale.isoCountryCodes.map { (code: String) -> Country in
         return Country(code: code)
     }.sorted(by: {$0.name < $1.name})
 }
