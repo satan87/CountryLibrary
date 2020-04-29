@@ -8,14 +8,14 @@ public enum CountryLibrary {
 
 public struct Country: Hashable {
     
-    var code: String
+    public var code: String
 
-    var name: String {
+    public var name: String {
         let idCode = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
         return NSLocale(localeIdentifier: Locale.current.languageCode ?? "en_US").displayName(forKey: NSLocale.Key.identifier, value: idCode) ?? ""
     }
 
-    var flag: String {
+    public var flag: String {
         return code
             .unicodeScalars
             .map({ 127397 + $0.value })
@@ -24,7 +24,7 @@ public struct Country: Hashable {
             .joined()
     }
 
-    var flagAndName: String {
+    public var flagAndName: String {
         return self.flag + " " + self.name
     }
     
@@ -42,7 +42,7 @@ public enum CountryIdentifier {
 }
 
 extension String {
-    func country(by cIdentifier: CountryIdentifier) -> Country? {
+    public func country(by cIdentifier: CountryIdentifier) -> Country? {
         return CountryLibrary.countries.first(where: {
                 cIdentifier == .code
                 ? $0.code.range(of: "\(self)", options: .caseInsensitive) != nil
@@ -52,7 +52,7 @@ extension String {
 }
 
 extension Array where Element == String {
-    func countries(by cIdentifier: CountryIdentifier) -> [Country] {
+    public func countries(by cIdentifier: CountryIdentifier) -> [Country] {
         return self.map({$0.country(by: cIdentifier)}).filter({$0 != nil}).map({$0!})
     }
 }
