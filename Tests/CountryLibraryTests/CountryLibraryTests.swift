@@ -48,6 +48,8 @@ final class CountryLibraryTests: XCTestCase {
         print(countries)
         assert(countries.count == 3)
         assert(countries[0].name == "France")
+        assert(countries[1].name == "Canada")
+        assert(countries[2].name == "Italy")
     }
 
 }

@@ -53,6 +53,7 @@ extension String {
 
 extension Array where Element == String {
     public func countries(by cIdentifier: CountryIdentifier) -> [Country] {
-        return self.map({$0.country(by: cIdentifier)}).filter({$0 != nil}).map({$0!})
+        return self.compactMap({$0.country(by: cIdentifier)})
     }
 }
+
