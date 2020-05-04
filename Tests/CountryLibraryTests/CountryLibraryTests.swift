@@ -6,8 +6,12 @@ final class CountryLibraryTests: XCTestCase {
     func testCountries() {
         let france = Country(code: "FR")
         
+        assert(france.code == france.id)
+        
         assert(france.name == "France")
         assert(france.flag == "🇫🇷")
+        
+        assert(france.flagAndName == "🇫🇷 France")
         
         assert(CountryLibrary.countries.count > 250)
         assert(CountryLibrary.countries[0].name < CountryLibrary.countries[1].name)
