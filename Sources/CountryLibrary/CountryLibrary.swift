@@ -30,7 +30,6 @@ public struct Country: Hashable {
     public var flagAndName: String {
         return self.flag + " " + self.name
     }
-    
 }
 
 extension Country: Identifiable {
