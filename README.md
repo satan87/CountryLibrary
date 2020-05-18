@@ -1,6 +1,7 @@
 # CountryLibrary
 
 A small extension to handle countries within Swift
+![Swift](https://github.com/satan87/CountryLibrary/workflows/Swift/badge.svg?branch=master)
 
 You have a country Struct with 
 - The Country Code
